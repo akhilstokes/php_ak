@@ -1,48 +1,34 @@
+<?php
+// Hardcoded credentials
+$valid_username = "admin";
+$valid_password = "password123"; // Ideally, don't use plain text passwords like this
+
+// Handle form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user = $_POST['username'];
+    $pass = $_POST['password'];
+
+    // Check if credentials match
+    if ($user === $valid_username && $pass === $valid_password) {
+        echo "Login successful!";
+    } else {
+        echo "Invalid username or password.";
+    }
+}
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
 </head>
 <body>
-    <h2>Login Page</h2>
-    <?php
-    // Initialize variables for feedback
-    $message = "";
-
-    // Check if the form is submitted
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Dummy credentials for validation
-        $valid_username = "admin";
-        $valid_password = "password123";
-
-        // Capture form data
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        // Validate credentials
-        if ($username === $valid_username && $password === $valid_password) {
-            $message = "Login successful! Welcome, " . htmlspecialchars($username) . "!";
-        } else {
-            $message = "Invalid username or password. Please try again.";
-        }
-    }
-    ?>
-
-    <!-- Display feedback message -->
-    <?php if ($message): ?>
-        <p><?php echo $message; ?></p>
-    <?php endif; ?>
-
-    <!-- Login form -->
-    <form action="" method="post">
+    <h2>Login</h2>
+    <form method="post">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
-        
+        <input type="text" name="username" id="username" required><br><br>
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-        
+        <input type="password" name="password" id="password" required><br><br>
         <button type="submit">Login</button>
     </form>
 </body>
